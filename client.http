@@ -1,0 +1,4 @@
+
+@baseUrl = http://localhost:33337
+
+GET {{baseUrl}}/rooms
