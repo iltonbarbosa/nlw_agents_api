@@ -1,0 +1,23 @@
+import {reset, seed} from 'drizzle-seed';
+import { db, sql } from './connection.ts';
+import { schema } from './schema/index.ts';
+
+await reset(db, schema );// Reset the database
+
+// Seed the database with initial data
+await seed(db, schema).refine((f) => {
+    return {
+        rooms: {
+            count: 20,
+            columns: {
+                name: f.companyName(),
+                description: f.loremIpsum(),
+            }
+        }
+    }
+ });
+
+await sql.end(); // Close the database connection
+
+// biome-ignore lint/suspicious/noConsole: This is a script for database management.
+console.log('Database reset and seeded successfully.');
