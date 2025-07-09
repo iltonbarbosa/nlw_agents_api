@@ -8,6 +8,13 @@
       "when": 1751986967868,
       "tag": "0000_narrow_annihilus",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1752013112618,
+      "tag": "0001_legal_nico_minoru",
+      "breakpoints": true
     }
   ]
 }
