@@ -13,12 +13,12 @@ export const createRoomRoute: FastifyPluginCallbackZod = (app) => {
             })
         },
     },
-    async (request, replay) => {
+    async (request, reply) => {
         const { name, description } = request.body;
         const result = await db.insert(schema.rooms).values({
             name,
             description,
-        }).returning();
+        }).returning();//após inserir, retorna um array com os dados que foram inseridos
 
         const insertedRoom = result[0];
 
@@ -26,7 +26,7 @@ export const createRoomRoute: FastifyPluginCallbackZod = (app) => {
           throw new Error('Failed to create room');
         }
 
-        return replay.status(201).send({
+        return reply.status(201).send({
             roomId: insertedRoom.id,
         });
     });
